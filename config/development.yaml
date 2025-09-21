@@ -1,0 +1,16 @@
+database:
+  type: sqlite
+  url: sqlite:///data/pipeline.db
+
+api:
+  base_url: https://jsonplaceholder.typicode.com
+  timeout: 30
+  retries: 3
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+storage:
+  data_dir: data
+  reports_dir: reports

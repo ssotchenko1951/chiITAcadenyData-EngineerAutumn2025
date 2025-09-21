@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: pipeline_db
+      POSTGRES_USER: pipeline_user
+      POSTGRES_PASSWORD: pipeline_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pipeline_user -d pipeline_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://pipeline_user:pipeline_password@postgres:5432/pipeline_db
+      ENVIRONMENT: production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    command: python -m src.main api start
+
+  prefect-server:
+    image: prefecthq/prefect:2.14.21-python3.11
+    ports:
+      - "4200:4200"
+    environment:
+      PREFECT_API_URL: http://localhost:4200/api
+      PREFECT_UI_URL: http://localhost:4200
+    command: prefect server start --host 0.0.0.0
+
+volumes:
+  postgres_data:

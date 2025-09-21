@@ -1,0 +1,10 @@
+generated_at,total_users,total_posts,total_comments,average_posts_per_user,most_active_user
+2024-01-15T10:30:00.000Z,5,10,12,2.0,Alice Johnson
+
+# Top Posts by Engagement
+title,comment_count,author
+Getting Started with Data Engineering,3,Alice Johnson
+Best Practices for Database Design,2,Alice Johnson
+Introduction to Clean Architecture,2,Bob Smith
+Implementing SOLID Principles in Python,1,Bob Smith
+Modern Frontend Development with React,1,Carol Davis

@@ -1,0 +1,20 @@
+database:
+  type: postgresql
+  host: ${POSTGRES_HOST:localhost}
+  port: ${POSTGRES_PORT:5432}
+  database: ${POSTGRES_DB:pipeline_db}
+  user: ${POSTGRES_USER:pipeline_user}
+  password: ${POSTGRES_PASSWORD:pipeline_password}
+
+api:
+  base_url: https://jsonplaceholder.typicode.com
+  timeout: 60
+  retries: 5
+
+logging:
+  level: WARNING
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+storage:
+  data_dir: /app/data
+  reports_dir: /app/reports
