@@ -1,0 +1,22 @@
+{
+    average_word_count [
+        {
+            avg_word_count 4.0
+        }
+    ],
+    unique_users [
+        {
+            unique_users 2
+        }
+    ],
+    posts_per_user [
+        {
+            userId 1,
+            post_count 2
+        },
+        {
+            userId 2,
+            post_count 1
+        }
+    ]
+}
